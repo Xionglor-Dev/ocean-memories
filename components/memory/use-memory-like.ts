@@ -7,6 +7,16 @@ type LikeResponse = {
   likesCount: number;
 };
 
+async function readLikeResponse(response: Response): Promise<LikeResponse | null> {
+  const text = await response.text();
+
+  if (!text.trim()) {
+    return null;
+  }
+
+  return JSON.parse(text) as LikeResponse;
+}
+
 export function useMemoryLike(memoryId: string, initialLiked = false, initialCount = 0) {
   const [liked, setLiked] = useState(initialLiked);
   const [count, setCount] = useState(initialCount);
@@ -74,11 +84,11 @@ export function useMemoryLike(memoryId: string, initialLiked = false, initialCou
             signal: abortController.signal,
           });
 
-          if (!response.ok) {
+          const data = await readLikeResponse(response);
+
+          if (!response.ok || !data) {
             throw new Error("Unable to update like");
           }
-
-          const data = (await response.json()) as LikeResponse;
 
           if (requestId === requestIdRef.current) {
             confirmedStateRef.current = {
