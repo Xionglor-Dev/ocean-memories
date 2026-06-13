@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import "@/app/globals.css";
+import "./globals.css";
 import { getSiteUrl } from "@/lib/env";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "My Ocean Memories",
-    template: "%s | My Ocean Memories",
+    default: "my-ocean-memories",
+    template: "%s | my-ocean-memories",
   },
   description:
     "A peaceful ocean-themed scrapbook timeline for personal memories, photos, and quiet moments worth keeping.",
   openGraph: {
-    title: "My Ocean Memories",
+    title: "my-ocean-memories",
     description:
       "A peaceful ocean-themed scrapbook timeline for personal memories, photos, and quiet moments worth keeping.",
     url: getSiteUrl(),
-    siteName: "My Ocean Memories",
+    siteName: "my-ocean-memories",
     images: [
       {
         url: "/images/ocean-watercolor.png",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "My Ocean Memories",
+    title: "my-ocean-memories",
     description:
       "A peaceful ocean-themed scrapbook timeline for personal memories, photos, and quiet moments worth keeping.",
     images: ["/images/ocean-watercolor.png"],
